@@ -38,9 +38,22 @@
   pointer-events: none;
   position: absolute;
   height: 100%;
-  width: 150vmin;
+  width: calc(8 * 50vmin);
   display: flex;
   flex-flow: row column;
+}
+
+.weather-item {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+.weather-info {
+  margin: 0 10px;
+  background: rgba(0, 0, 0, .8);
+  border-radius: 4px;
 }
 
 .weather-symbol {
@@ -50,7 +63,7 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .weather-pattern {
-    animation: weather-pattern-scroll infinite 14s linear;
+    animation: weather-pattern-scroll infinite 30s linear;
   }
 }
 
@@ -60,7 +73,7 @@
 
 @keyframes weather-pattern-scroll {
   from {
-    left: -150vmin;
+    left: calc(-8 * 50vmin);
   }
   100% {
     left: calc(100vmin + 20px);
