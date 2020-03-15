@@ -1,25 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
+import japan from './assets/images/japan.svg';
 import './App.css';
 
 function App() {
+  const basePath = './assets/images/symbols/';
+  const symbolNum = '-24.png';
+  const lightSnowPartlySunny = '6.png';
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <article className="bg bg-dark">
+      <section className="weather-animation">
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Today's Weather is: <strong>Heavy Snow</strong>
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+        <div class="weather-scene">
+          <img className="weather-bg" src={japan} alt="mountain scene" />
+          <div class="weather-pattern">
+            <img src={require(`${basePath}${symbolNum}`)} className="weather-symbol" alt="logo" />
+            <img src={require(`${basePath}${lightSnowPartlySunny}`)} className="weather-symbol" alt="logo" />
+            <img src={require(`${basePath}${symbolNum}`)} className="weather-symbol" alt="logo" />
+          </div>
+        </div>
+        <footer>
+
+          <a
+            className="App-link"
+            href="#"
+          >
+            See Details
+          </a>
+        </footer>
+      </section>
+    </article>
   );
 }
 
