@@ -67,10 +67,6 @@
   }
 }
 
-.App-link {
-  color: #61dafb;
-}
-
 @keyframes weather-pattern-scroll {
   from {
     left: calc(-8 * 50vmin);

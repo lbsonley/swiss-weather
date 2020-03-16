@@ -2,27 +2,34 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import { hourlyToUi } from '../assets/js/domain';
 
-function Hourly24({ View }) {
-  const [ weather, setWeather ] = useState([]);
+function Hourly24({ loc, View }) {
+  const [ weather, setWeather ] = useState(null);
+
+  const apiUrl24Hour = 'https://api.srgssr.ch/forecasts/v1.0/weather/24hour';
+  const query = `?latitude=${loc.lat}&longitude=${loc.lng}`
 
   useEffect(() => {
     axios.get(
-      'https://api.srgssr.ch/forecasts/v1.0/weather/24hour?latitude=46.559856&longitude=7.892691',
+      `${apiUrl24Hour}${query}`,
       {
         response: 'json',
         headers: {
-          Authorization: 'Bearer 0RsZQ91uhCxPrO30Ka7LI9B6UqI2'
+          Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`
         }
       })
     .then(res => {
       const data = hourlyToUi(res);
       console.log('hourlyToUi', data);
       setWeather(data);
-  
-    });
-  }, []);
+    })
+    .catch(err => console.log(err));
+  }, [loc.lat, loc.lng, query]);
 
-  return (<View weather={weather} />);
+  return (
+    weather
+      ? <View weather={weather['5600']} />
+      : null
+  );
 
 };
 
